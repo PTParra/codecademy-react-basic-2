@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
 
 export const Contact = () => {
-  const password = 'swordfish';
-  const [authorized, setAuthorized] = useState(false);
+    const password = 'swordfish';
+    const [authorized, setAuthorized] = useState(false);
 
-  function handleSubmit(e) {
-    const enteredPassword = e.target.querySelector(
-      'input[type="password"]').value;
-    const auth = enteredPassword == password;
-    setAuthorized(auth)
-  }
+    function handleSubmit(e) {
+        const enteredPassword = e.target.querySelector(
+            'input[type="password"]').value;
+        const auth = enteredPassword == password;
+        setAuthorized(auth)
+    }
 
-  return (
-      <div id="authorization">
-        <h1>Contact</h1>
+    const login = (
+        <form action="#" onSubmit={handleSubmit}>
+            <input type="password" name="password" id="password" placeholder='Password' />
+            <input type="submit" value="Submit"/>
+        </form>
+    )
+
+    const contactInfo = (
         <ul>
-          <li>
-            client@example.com
-          </li>
-          <li>
-            555.555.5555
-          </li>
+            <li>client@example.com</li>
+            <li>555.555.5555</li>
         </ul>
-      </div>
-  );
+    )
+
+    return (
+        <div id="authorization">
+            <h1>{authorized ? "Contact" : "Enter the Password"}</h1>
+            {authorized ? contactInfo : login}
+        </div>
+    );
 }
